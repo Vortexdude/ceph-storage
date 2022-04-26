@@ -41,7 +41,7 @@
         lv: "{{ logicalvolume['lv_name'] }}"
         lvm_size: "{{ logicalvolume['lvm_size'] }}g"
 
-    - import_task: create_lvm.yml
+    - import_tasks: create_lvm.yml
 
 - hosts:
     - admin
