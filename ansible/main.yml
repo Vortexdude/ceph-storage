@@ -29,7 +29,7 @@
         mag: "You must Define at least one osd node"
       when: osds not in groups
 
-    - import_task: create_lvm.yml
+    - import_tasks: create_lvm.yml
   
   tasks:
     - name: set_facts for the logical volumes
