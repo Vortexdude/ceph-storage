@@ -1,0 +1,14 @@
+
+- name: set hostname to all deamons 
+  hostname:
+    name: "{{ ansible_hostname }}"
+
+- name: identify the hosts in /etc/hosts
+  blockinfile:
+    path: /etc/hosts
+    block: |
+      10.204.68.46 ceph-admin
+      10.204.68.47 ceph-mon
+      10.204.68.48 ceph-osd1
+      10.204.68.49 ceph-osd2
+      10.204.68.50 ceph-mds

@@ -1,0 +1,23 @@
+
+- name: install the required packages for the docker
+  package:
+    name: "{{ https_packages }}"
+    update_cache: true
+  when: ansible_os_family == 'Debian'
+
+- name: adding the apt-key for docker 
+  shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+- name: download the docker by the shell module
+  shell: echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -sc) stable" | sudo tee /etc/apt/sources.list.d/docker-ce.list
+
+- name: update the repo and install the docker
+  package:
+    name: "{{ docker_packages }}"
+    update_cache: true
+
+- name: enable the docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes

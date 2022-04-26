@@ -1,0 +1,11 @@
+- name: install packages
+  package:
+    name: "{{ packages }}"
+    state: present
+
+- name: change the configuration of chrony
+  lineinfile:
+    dest: /etc/chrony/chrony.conf
+    regexp: '^pool'
+    line: pool dk.pool.ntp.org iburst
+    state: present

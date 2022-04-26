@@ -1,0 +1,13 @@
+---
+
+- name: include the setup_hosts.yml task
+  include_tasks: setup_hosts.yml
+
+- name: include the chrony.yml task
+  include_tasks: setup_chrony.yml
+
+- name: include the setup_user.yaml task
+  include_tasks: setup_user.yaml
+
+- name: include the install_docker.yml task
+  include_tasks: install_docker.yml

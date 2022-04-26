@@ -1,0 +1,46 @@
+
+- name: download the cephadm package
+  get_url:
+    url: https://github.com/ceph/ceph/raw/pacific/src/cephadm/cephadm
+    dest: /usr/bin/
+
+- name: the permisstion to exicutable
+  file:
+    dest: /usr/bin/cephadm
+    mode: 'a+x'
+
+- name: stop the service if already enable 
+  shell: systemctl stop ceph.target
+  become_user: root
+
+- name: run the bootstrape command
+  shell: cephadm bootstrap --mon-ip {{ ansible_default_ipv4.address }} --allow-overwrite 
+  register: result
+
+- name: debug
+  debug:
+    var: result.stderr_lines
+
+- name: installing the cephadm cli mode
+  shell: cephadm add-repo --release pacific
+
+- name: installing the ceph-common
+  shell: cephadm install ceph-common
+
+- name: Set authorized key in monitor node
+  shell: ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-mon
+
+- name: Set authorized key in osd1 node
+  shell: ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-osd1
+
+- name: Set authorized key in ods2 node
+  shell: ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-osd2
+
+- name: addding the monitor host in the cluster
+  shell: ceph orch host add ceph-mon
+
+- name: addding the osd1 host in the cluster
+  shell: ceph orch host add ceph-osd1
+
+- name: addding the osd2 host in the cluster
+  shell: ceph orch host add ceph-osd2

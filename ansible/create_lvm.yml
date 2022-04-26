@@ -1,0 +1,32 @@
+
+- name: create partition
+  parted:
+    device: "{{ external_device }}"
+    number: 1
+    flags: [ lvm ]
+    state: present
+    part_end: "{{ partition_size }}"
+
+- name: task for creating volume group
+  lvg:
+    vg: "{{ vg }}"
+    pvs: "{{ partition_index }}"
+
+- name: Install lvm2 dependency
+  package:
+    name: lvm2
+    state: present
+
+- name: task for creating logical volume
+  lvol:
+      vg: "{{ vg }}"
+      lv: "{{ lv }}"
+      size: "{{ lvm_size }}"
+      force: yes
+
+- name: format the xfs filesystem
+  filesystem:
+    fstype: xfs
+    dev: "/dev/{{ vg }}/{{ lv }}"
+
+    

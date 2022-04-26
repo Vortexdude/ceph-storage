@@ -1,0 +1,13 @@
+---
+- name: insert match user and key into the ssh/config location
+  blockinfile:
+    path: /root/.ssh/config
+    block: |
+      Host *
+      User root
+      IdentityFile ~/.ssh/ravi.pem
+      StrictHostKeyChecking no
+      ForwardAgent yes
+
+- name: include the setup_ceph task
+  include_tasks: setup_ceph.yml

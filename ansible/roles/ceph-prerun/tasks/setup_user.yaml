@@ -1,0 +1,21 @@
+
+- name: adding the user cephadmin
+  user:
+    name: cephadmin
+    shell: /bin/bash
+    create_home: true
+    password: '!'
+    state: present
+
+- name: adding the line in the /etc/sudoers.d/cephadmin
+  lineinfile:
+    path: /etc/sudoers.d/cephadmin
+    line: cephadmin ALL=(ALL:ALL) NOPASSWD:ALL
+    create: yes
+
+- name: change the permission of file /etc/sudoers.d/cephadmin
+  file:
+    path: /etc/sudoers.d/cephadmin
+    owner: root
+    group: root
+    mode: 0440
