@@ -6,7 +6,7 @@ This ansible plabook reuired altlease one `admin,monitor` and two `osd` device w
 1. `/dev/vdb1` 
 2. `/dev/vdb2`
 
-make shure the device is seleted in the default varaible file and other varaibles
+Make sure the device is seleted in the default varaible file and other varaibles
 other thing is to keep the default key is set in all the hsots in the inventory and try to ssh in all of your nodes
 
 you need to define these 4 gorups of hosts in you inventory
