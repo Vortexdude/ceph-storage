@@ -27,7 +27,7 @@ git clone https://github.com/Vortexdude/ceph-storage
 cd ansible/
 ```
 
-and also need to define the logical volumes and other variable in `groups variable`
+and also need to define the logical volumes and other variable in [group_var/all](https://github.com/Vortexdude/ceph-storage/blob/master/ansible/group_vars/all.yml)
 
 ``` yml
 logicalvolume1:
