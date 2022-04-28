@@ -27,6 +27,12 @@
 - name: installing the ceph-common
   shell: cephadm install ceph-common
 
+- name: start docker container service
+  service:
+    name: docker
+    state: started
+  enabled: yes
+
 - name: Set authorized key in monitor node
   shell: ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-mon
 
