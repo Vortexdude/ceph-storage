@@ -71,4 +71,5 @@
     - name: including the adding the nodes and the storage
       import_role: 
         name: adding-nodes-storage
+        tasks_from: main.yaml
       ignore_errors: yes
