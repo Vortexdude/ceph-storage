@@ -51,3 +51,4 @@
   tasks:
     - import_role:
         name: ceph-setup
+        tasks_from: setup_ceph.yml
