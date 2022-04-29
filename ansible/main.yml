@@ -57,7 +57,6 @@
   pre_tasks:
     - import_role:
         name: ceph-prerun
-      when: ansible_distribution == "Debian"
   tasks:
     - import_role:
         name: ceph-setup
