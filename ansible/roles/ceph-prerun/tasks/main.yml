@@ -1,7 +1,7 @@
 ---
 
 - name: include the setup_hosts.yml task
-  include_tasks: setup_hosts.yml
+  include_tasks: setup_hosts.yaml
 
 - name: include the chrony.yml task
   include_tasks: setup_chrony.yml
