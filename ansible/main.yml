@@ -14,6 +14,10 @@
     lvm_size: "{{ logicalvolume['lvm_size'] }}g"
 
   pre_tasks:
+    - name: check the lvs is exist or not
+      command: lvs
+      register: lvs
+
     - name: exit playbook, if the admin devices not exit
       fail:
         mag: "You must Define at least one admin node"
@@ -29,7 +33,9 @@
         mag: "You must Define at least one osd node"
       when: osds not in groups
 
-    - import_tasks: create_lvm.yml
+    - name: importing creating logical volume file
+      import_tasks: create_lvm.yml
+      when: lvs.stdout == ''
   
   tasks:
     - name: set_facts for the logical volumes
