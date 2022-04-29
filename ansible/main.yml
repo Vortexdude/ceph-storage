@@ -33,7 +33,7 @@
         lv: "{{ logicalvolume2['lv_name'] }}"
         lvm_size: "{{ logicalvolume2['lvm_size'] }}g"
         times: "{{ logicalvolume2['partition_index'] }}"
-
+    - debug: msg="{{ external_device partition_size  vg partition_index lvm_size times }}"
     - name: check if the lvs is create or not for storage
       shell: lvs | grep lv | wc -l
       register: nums_lvs
