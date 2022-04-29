@@ -5,7 +5,7 @@
     number: "{{ times }}"
     flags: [ lvm ]
     state: present
-    part_end: "{{ partition_size }}"
+    part_start: "{{ partition_size }}"
 
 - name: task for creating volume group
   lvg:
