@@ -31,8 +31,14 @@
         partition_index: "{{ logicalvolume2['external_device'] }}{{ logicalvolume2['partition_index'] }}"
         lv: "{{ logicalvolume2['lv_name'] }}"
         lvm_size: "{{ logicalvolume2['lvm_size'] }}g"
-
-    - import_tasks: create_lvm.yml
+        
+    - name: check if the lvs is create or not for storage
+      shell: lvs | grep lv | wc -l
+      register: nums_lvs
+      
+    - name: importing the create lvm task
+      import_tasks: create_lvm.yml
+      when: nums_lvs.stdout <= '1'
 
 - hosts:
     - admin
