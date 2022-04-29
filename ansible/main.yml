@@ -1,6 +1,6 @@
 
 - hosts:
-    - mon
+    - mons
     - osd1
     - osd2
   become: true
