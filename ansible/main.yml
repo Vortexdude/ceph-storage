@@ -70,5 +70,4 @@
 
     - name: including the adding the nodes and the storage
       import_role: 
-        name: adding-nodes-storage
-      ignore_errors: yes
+        name: addingnds
