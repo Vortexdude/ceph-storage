@@ -18,21 +18,6 @@
       command: lvs
       register: lvs
 
-    - name: exit playbook, if the admin devices not exit
-      fail:
-        mag: "You must Define at least one admin node"
-      when: admin not in groups
-
-    - name: exit playbook, if the admin monitor and osd devices not exit
-      fail:
-        mag: "You must Define at least one monitor node"
-      when: mons not in groups
-
-    - name: exit playbook, if the admin monitor and osd devices not exit
-      fail:
-        mag: "You must Define at least one osd node"
-      when: osds not in groups
-
     - name: importing creating logical volume file
       import_tasks: create_lvm.yml
       when: lvs.stdout == ''
