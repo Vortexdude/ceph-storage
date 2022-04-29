@@ -12,5 +12,5 @@
 
 - name: fail the message with the messages
   fail:
-    msg: "There is Error in addin the monitor"
+    msg: "There is Error in addin the server"
   when: res_mon.rc == '22' or  res_osd1.rc == '22' or res_osd2.rc == '22'
