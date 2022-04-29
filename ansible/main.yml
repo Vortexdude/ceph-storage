@@ -6,12 +6,12 @@
   become: true
 
   vars:
-    external_device: "{{ logicalvolume['external_device'] }}"
-    partition_size: "{{ logicalvolume['partition_size'] }}GB"
-    vg: "{{ logicalvolume['vg_name'] }}"
-    partition_index: "{{ logicalvolume['external_device'] }}{{ logicalvolume['partition_index'] }}"
-    lv: "{{ logicalvolume['lv_name'] }}"
-    lvm_size: "{{ logicalvolume['lvm_size'] }}g"
+    external_device: "{{ logicalvolume1['external_device'] }}"
+    partition_size: "{{ logicalvolume1['partition_size'] }}GB"
+    vg: "{{ logicalvolume1['vg_name'] }}"
+    partition_index: "{{ logicalvolume1['external_device'] }}{{ logicalvolume1['partition_index'] }}"
+    lv: "{{ logicalvolume1['lv_name'] }}"
+    lvm_size: "{{ logicalvolume1['lvm_size'] }}g"
 
   pre_tasks:
     - name: check the lvs is exist or not
@@ -25,12 +25,12 @@
   tasks:
     - name: set_facts for the logical volumes
       set_fact:
-        external_device: "{{ logicalvolume['external_device'] }}"
-        partition_size: "{{ logicalvolume['partition_size'] }}GB"
-        vg: "{{ logicalvolume['vg_name'] }}"
-        partition_index: "{{ logicalvolume['external_device'] }}{{ logicalvolume['partition_index'] }}"
-        lv: "{{ logicalvolume['lv_name'] }}"
-        lvm_size: "{{ logicalvolume['lvm_size'] }}g"
+        external_device: "{{ logicalvolume2['external_device'] }}"
+        partition_size: "{{ logicalvolume2['partition_size'] }}GB"
+        vg: "{{ logicalvolume2['vg_name'] }}"
+        partition_index: "{{ logicalvolume2['external_device'] }}{{ logicalvolume2['partition_index'] }}"
+        lv: "{{ logicalvolume2['lv_name'] }}"
+        lvm_size: "{{ logicalvolume2['lvm_size'] }}g"
 
     - import_tasks: create_lvm.yml
 
