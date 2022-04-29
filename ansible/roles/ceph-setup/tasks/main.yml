@@ -8,6 +8,7 @@
       IdentityFile ~/.ssh/ravi.pem
       StrictHostKeyChecking no
       ForwardAgent yes
-
+   delegate_to: admin
+  
 - name: include the setup_ceph task
   include_tasks: setup_ceph.yml
