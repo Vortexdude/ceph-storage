@@ -49,10 +49,23 @@
     - import_role:
         name: ceph-prerun
         
-- hosts:
-  - admin
+- hosts: admin
+  become: true
+  become_user: root
+  vars:
+    external_device: "{{ logicalvolume2['external_device'] }}"
+    partition_size: "{{ logicalvolume2['partition_size'] }}GB"
+    vg: "{{ logicalvolume2['vg_name'] }}"
+    partition_index: "{{ logicalvolume2['external_device'] }}{{ logicalvolume2['partition_index'] }}"
+    lv: "{{ logicalvolume2['lv_name'] }}"
+    lvm_size: "{{ logicalvolume2['lvm_size'] }}g"
+
   tasks:
     - name: importing the setup_ceph.yml
       import_role:
         name: ceph-setup
         tasks_from: setup_ceph.yml
+
+    - name: including the adding the nodes and the storage
+      import_role: 
+        name: adding-nodes-storage

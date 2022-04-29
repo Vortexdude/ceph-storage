@@ -1,0 +1,8 @@
+- name: adding the monitor storage to the cluster
+  shell: sudo ceph orch daemon add osd ceph-mon:"{{ vg }}/{{ lv }}"
+
+- name: adding the osd1 storage to the cluster
+  shell: sudo ceph orch daemon add osd ceph-osd1:"{{ vg }}/{{ lv }}"
+
+- name: adding the osd2 storage to the cluster
+  shell: sudo ceph orch daemon add osd ceph-osd2:"{{ vg }}/{{ lv }}"
