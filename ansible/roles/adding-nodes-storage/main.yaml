@@ -10,7 +10,7 @@
   shell: sudo ceph orch daemon add osd ceph-osd2:"{{ vg }}/{{ lv }}"
   register: res_osd2
 
-- name: fail the message with the messages anme
+- name: fail the message with the messages
   fail:
     msg: "There is Error in addin the monitor"
   when: res_mon.rc == '22' or  res_osd1.rc == '22' or res_osd2.rc == '22'
