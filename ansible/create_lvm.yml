@@ -2,7 +2,7 @@
 - name: create partition
   parted:
     device: "{{ external_device }}"
-    number: 1
+    number: "{{ times }}"
     flags: [ lvm ]
     state: present
     part_end: "{{ partition_size }}"

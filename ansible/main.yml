@@ -12,6 +12,7 @@
     partition_index: "{{ logicalvolume1['external_device'] }}{{ logicalvolume1['partition_index'] }}"
     lv: "{{ logicalvolume1['lv_name'] }}"
     lvm_size: "{{ logicalvolume1['lvm_size'] }}g"
+    times: "{{ logicalvolume1['partition_index'] }}"
 
   pre_tasks:
     - name: check the lvs is exist or not
@@ -31,7 +32,8 @@
         partition_index: "{{ logicalvolume2['external_device'] }}{{ logicalvolume2['partition_index'] }}"
         lv: "{{ logicalvolume2['lv_name'] }}"
         lvm_size: "{{ logicalvolume2['lvm_size'] }}g"
-        
+        times: "{{ logicalvolume2['partition_index'] }}"
+
     - name: check if the lvs is create or not for storage
       shell: lvs | grep lv | wc -l
       register: nums_lvs
