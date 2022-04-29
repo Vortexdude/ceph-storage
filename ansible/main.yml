@@ -67,7 +67,5 @@
       import_role:
         name: ceph-setup
         tasks_from: setup_ceph.yml
-
-    - name: including the adding the nodes and the storage
-      import_role: 
-        name: addingnds
+    - include_role: 
+        name: 'addingnds'
