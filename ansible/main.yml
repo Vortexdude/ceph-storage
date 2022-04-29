@@ -49,10 +49,10 @@
     - import_role:
         name: ceph-prerun
         
- - hosts:
-    - admin
-   tasks:
-     - name: importing the setup_ceph.yml
-       import_role:
-         name: ceph-setup
-         tasks_from: setup_ceph.yml
+- hosts:
+  - admin
+  tasks:
+    - name: importing the setup_ceph.yml
+      import_role:
+        name: ceph-setup
+        tasks_from: setup_ceph.yml
