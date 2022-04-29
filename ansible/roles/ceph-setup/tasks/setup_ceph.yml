@@ -30,9 +30,8 @@
 - name: start docker container service
   service:
     name: docker
-    state: started
-  enabled: yes
-
+    state: restarted
+    
 - name: Set authorized key in monitor node
   shell: ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-mon
 
