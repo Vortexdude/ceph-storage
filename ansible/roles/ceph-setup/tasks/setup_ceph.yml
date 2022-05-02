@@ -10,7 +10,7 @@
     mode: 'a+x'
 
 - name: run the bootstrape command
-  shell: cephadm bootstrap --mon-ip {{ ansible_default_ipv4.address }} --allow-overwrite 
+  command: cephadm bootstrap --mon-ip {{ ansible_default_ipv4.address }} --allow-overwrite 
   register: result
   ignore_erros: True
 
