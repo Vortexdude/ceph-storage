@@ -12,10 +12,22 @@
 - name: run the bootstrape command
   shell: cephadm bootstrap --mon-ip {{ ansible_default_ipv4.address }} --allow-overwrite 
   register: result
+  ignore_erros: True
+
+- name: run the bootstarap agian
+  shell: systemctl stop ceph.target
+  when: result.rc == '1'
+
+- name: run the bootstrape command
+  shell: cephadm bootstrap --mon-ip {{ ansible_default_ipv4.address }} --allow-overwrite 
+  register: result_out
+  retries: 2
+  delay: 2
+  ignore_erros: True
 
 - name: debug
   debug:
-    var: result.stderr_lines
+    var: result_out.stderr_lines
 
 - name: get the key from /etc/ceph/ceph.conf for enable the ceph-cli
   shell: cat /etc/ceph/ceph.conf | grep 'fsid' | awk '{print $3}' FS=' '
