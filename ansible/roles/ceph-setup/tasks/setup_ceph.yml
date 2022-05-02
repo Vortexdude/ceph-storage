@@ -10,20 +10,10 @@
     mode: 'a+x'
 
 - name: run the bootstrape command
-  command: cephadm bootstrap --mon-ip {{ ansible_default_ipv4.address }} --allow-overwrite 
-  register: result
-  ignore_errors: yes
-
-- name: run the bootstarap agian
-  shell: systemctl stop ceph.target
-  when: result.rc == '1'
-
-- name: run the bootstrape command
   shell: cephadm bootstrap --mon-ip {{ ansible_default_ipv4.address }} --allow-overwrite 
   register: result_out
   retries: 2
   delay: 2
-  ignore_errors: True
 
 - name: debug
   debug:
