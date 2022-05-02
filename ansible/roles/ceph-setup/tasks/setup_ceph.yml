@@ -1,11 +1,3 @@
-- name: check the service is active or inactive
-  command: "systemctl status ceph.target | grep 'Active' | awk '{print $2}' FS=' '"
-  register: service_status
-  ignore_errors: True
-
-- name: stop the ceph.target service if service is inactive
-  shell: systemctl stop ceph.target
-  when: service_status.stdout == 'active'
 
 - name: download the cephadm package
   get_url:
