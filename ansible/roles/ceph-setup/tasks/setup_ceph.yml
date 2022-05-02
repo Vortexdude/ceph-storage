@@ -1,3 +1,14 @@
+- name: check the service is active or inactive
+  commands: systemctl status ceph.target | grep 'Active' | awk '{print $2}' FS=' '
+  register: service_status
+  ignore_errors: True
+
+- name: stop the ceph.target service if service is inactive
+  service:
+    name: ceph.target
+    state: stopped
+  when: service_status.stdout == 'active'
+  ignore_errors: True
 
 - name: download the cephadm package
   get_url:
@@ -12,6 +23,13 @@
 - name: run the bootstrape command
   shell: cephadm bootstrap --mon-ip {{ ansible_default_ipv4.address }} --allow-overwrite 
   register: result
+
+- name: get the key from /etc/ceph/ceph.conf for enable the ceph-cli
+  shell: cat /etc/ceph/ceph.conf | grep 'fsid' | awk '{print $3}' FS=' '
+  register: keyid
+
+- name: enable the ceph-cli mode
+  commands: "/usr/bin/cephadm shell --fsid {{ keyid.stdout }} -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring"
 
 - name: debug
   debug:

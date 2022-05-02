@@ -1,13 +1,13 @@
 - name: adding the monitor storage to the cluster
-  shell: sudo ceph orch daemon add osd ceph-mon:"{{ vg }}/{{ lv }}"
+  shell: ceph orch daemon add osd ceph-mon:"{{ vg }}/{{ lv }}"
   register: res_mon
 
 - name: adding the osd1 storage to the cluster
-  shell: sudo ceph orch daemon add osd ceph-osd1:"{{ vg }}/{{ lv }}"
+  shell: ceph orch daemon add osd ceph-osd1:"{{ vg }}/{{ lv }}"
   register: res_osd1
 
 - name: adding the osd2 storage to the cluster
-  shell: sudo ceph orch daemon add osd ceph-osd2:"{{ vg }}/{{ lv }}"
+  shell: ceph orch daemon add osd ceph-osd2:"{{ vg }}/{{ lv }}"
   register: res_osd2
 
 - name: fail the message with the messages
