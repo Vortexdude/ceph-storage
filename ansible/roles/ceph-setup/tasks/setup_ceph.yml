@@ -21,16 +21,18 @@
   shell: cephadm bootstrap --mon-ip {{ ansible_default_ipv4.address }} --allow-overwrite 
   register: result
 
+- name: debug
+  debug:
+    var: result.stderr_lines
+
 - name: get the key from /etc/ceph/ceph.conf for enable the ceph-cli
   shell: cat /etc/ceph/ceph.conf | grep 'fsid' | awk '{print $3}' FS=' '
   register: keyid
 
+- debug: var=keyid.stdout
+
 - name: enable the ceph-cli mode
   command: "/usr/bin/cephadm shell --fsid {{ keyid.stdout }} -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring"
-
-- name: debug
-  debug:
-    var: result.stderr_lines
 
 - name: installing the cephadm cli mode
   shell: cephadm add-repo --release pacific
