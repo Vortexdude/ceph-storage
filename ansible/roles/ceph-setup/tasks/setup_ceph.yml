@@ -45,3 +45,9 @@
 
 - name: addding the osd2 host in the cluster
   shell: ceph orch host add ceph-osd2
+
+- name: label the osd1 host
+  command: ceph orch host label add ceph-osd1 osd
+
+- name: label the osd2 host
+  command: ceph orch host label add ceph-osd2 osd

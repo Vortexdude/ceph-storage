@@ -67,6 +67,11 @@
       import_role:
         name: ceph-setup
         tasks_from: setup_ceph.yml
+      become: true
+      become_user: root
+
     - name: importing theaddingnds      
       import_role: 
         name: adding-nds
+      become: true
+      become_user: root
