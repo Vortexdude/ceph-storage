@@ -10,7 +10,7 @@
     mode: 'a+x'
 
 - name: run the bootstrape command
-  shell: cephadm bootstrap --mon-ip {{ ansible_default_ipv4.address }} --allow-overwrite 
+  shell: sudo cephadm bootstrap --mon-ip {{ ansible_default_ipv4.address }} --allow-overwrite 
   register: result_out
   retries: 2
   delay: 2
@@ -20,10 +20,10 @@
     var: result_out.stderr_lines
 
 - name: installing the cephadm cli mode
-  shell: cephadm add-repo --release pacific
+  shell: sudo cephadm add-repo --release pacific
 
 - name: installing the ceph-common
-  shell: cephadm install ceph-common
+  shell: sudo cephadm install ceph-common
 
 - name: start docker container service
   service:
@@ -31,37 +31,37 @@
     state: restarted
     
 - name: Set authorized key in monitor node
-  shell: ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-mon
+  shell: sudo ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-mon
 
 - name: Set authorized key in osd1 node
-  shell: ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-osd1
+  shell: sudo ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-osd1
 
 - name: Set authorized key in ods2 node
-  shell: ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-osd2
+  shell: sudo ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-osd2
 
 - name: Set authorized key in monitor node
-  shell: ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-mds
+  shell: sudo ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-mds
 
 - name: addding the monitor host in the cluster
-  shell: ceph orch host add ceph-mon
+  shell: sudo ceph orch host add ceph-mon
 
 - name: label the mon deamon
-  shell: ceph orch host label add ceph-mon mon/osd
+  shell: sudo ceph orch host label add ceph-mon mon/osd
 
 - name: addding the osd1 host in the cluster
-  shell: ceph orch host add ceph-osd1
+  shell: sudo ceph orch host add ceph-osd1
 
 - name: addding the osd2 host in the cluster
-  shell: ceph orch host add ceph-osd2
+  shell: sudo ceph orch host add ceph-osd2
 
 - name: addding the mds host in the cluster
-  shell: ceph orch host add ceph-mds
+  shell: sudo ceph orch host add ceph-mds
 
 - name: lable the mds deamon
-  shell: ceph orch host label add ceph-mds mds
+  shell: sudo ceph orch host label add ceph-mds mds
 
 - name: label the osd1 host
-  command: ceph orch host label add ceph-osd1 osd
+  command: sudo ceph orch host label add ceph-osd1 osd
 
 - name: label the osd2 host
-  command: ceph orch host label add ceph-osd2 osd
+  command: sudo ceph orch host label add ceph-osd2 osd
