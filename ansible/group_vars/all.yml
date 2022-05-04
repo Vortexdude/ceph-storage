@@ -1,15 +1,15 @@
-logicalvolume1:
-  external_device: /dev/vdb
-  partition_index: 1
-  lv_name: lv_ceph
-  vg_name: vg_ceph
-  partition_size: 20
-  lvm_size: 10
-
-logicalvolume2:
-  external_device: /dev/vdb
-  partition_index: 2
-  lv_name: lv_ceph_40
-  vg_name: vg_ceph_40
-  partition_size: 50
-  lvm_size: 40
+logicalvolumes:
+  logicalvolume1:
+    external_device: /dev/vdb
+    partition_index: 1
+    lv_name: lv_ceph
+    vg_name: vg_ceph
+    partition_size: 20
+    lvm_size: 10
+  logicalvolume2:
+    external_device: /dev/vdb
+    partition_index: 2
+    lv_name: lv_ceph_40
+    vg_name: vg_ceph_40
+    partition_size: 50
+    lvm_size: 40
