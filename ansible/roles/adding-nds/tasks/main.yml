@@ -12,7 +12,7 @@
   register: res_osd2
 
 - name: adding the mds storage to the cluster
-  shell: "ceph orch daemon add osd ceph-mds:{{ vg }}/{{ lv }}"
+  shell: "ceph orch daemon add mds ceph-mds:{{ vg }}/{{ lv }}"
   register: res_mds
 
 - name: fail the message with the messages
