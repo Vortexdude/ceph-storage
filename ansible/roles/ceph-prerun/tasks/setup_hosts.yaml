@@ -7,7 +7,8 @@
   blockinfile:
     path: /etc/hosts
     block: |
-      10.204.68.5 ceph-admin
-      10.204.68.6 ceph-mon
-      10.204.68.9 ceph-osd1
-      10.204.68.10 ceph-osd2
+      10.204.68.12 ceph-admin
+      10.204.68.14 ceph-mon
+      10.204.68.15 ceph-osd1
+      10.204.68.18 ceph-osd2
+      10.204.68.22 ceph-mds

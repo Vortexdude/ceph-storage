@@ -39,6 +39,9 @@
 - name: Set authorized key in ods2 node
   shell: ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-osd2
 
+- name: Set authorized key in monitor node
+  shell: ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-mds
+
 - name: addding the monitor host in the cluster
   shell: ceph orch host add ceph-mon
 
@@ -47,6 +50,15 @@
 
 - name: addding the osd2 host in the cluster
   shell: ceph orch host add ceph-osd2
+
+- name: addding the mds host in the cluster
+  shell: ceph orch host add ceph-mds
+
+- name: label the mon deamon
+  shell: ceph orch host label add ceph-mon mon/osd
+
+- name: lable the mds deamon
+  shell: ceph orch host label add ceph-mds mds
 
 - name: label the osd1 host
   command: ceph orch host label add ceph-osd1 osd
