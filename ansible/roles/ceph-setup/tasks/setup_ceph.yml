@@ -45,6 +45,9 @@
 - name: addding the monitor host in the cluster
   shell: ceph orch host add ceph-mon
 
+- name: label the mon deamon
+  shell: ceph orch host label add ceph-mon mon/osd
+
 - name: addding the osd1 host in the cluster
   shell: ceph orch host add ceph-osd1
 
@@ -53,9 +56,6 @@
 
 - name: addding the mds host in the cluster
   shell: ceph orch host add ceph-mds
-
-- name: label the mon deamon
-  shell: ceph orch host label add ceph-mon mon/osd
 
 - name: lable the mds deamon
   shell: ceph orch host label add ceph-mds mds
