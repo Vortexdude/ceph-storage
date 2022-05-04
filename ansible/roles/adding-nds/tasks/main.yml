@@ -17,4 +17,4 @@
 - name: fail the message with the messages
   fail:
     msg: "There is Error in addin the server"
-  when: res_mon.rc == '22' or  res_osd1.rc == '22' or res_osd2.rc == '22' or res_mds.rd =='22'
+  when: res_mon.rc == '22' or  res_osd1.rc == '22' or res_osd2.rc == '22' or res_mds.rc =='22'
