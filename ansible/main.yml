@@ -3,16 +3,17 @@
     - mons
     - osd1
     - osd2
+    - mds
   become: true
 
   vars:
-    external_device: "{{ logicalvolumes['logicalvolume1']['external_device'] }}"
-    partition_size: "{{ logicalvolumes['logicalvolume1']['partition_size'] }}GB"
-    vg: "{{ logicalvolumes['logicalvolume1']['vg_name'] }}"
-    partition_index: "{{ logicalvolumes['logicalvolume1']['external_device'] }}{{ logicalvolumes['logicalvolume1']['partition_index'] }}"
-    lv: "{{ logicalvolumes['logicalvolume1']['lv_name'] }}"
-    lvm_size: "{{ logicalvolumes['logicalvolume1']['lvm_size'] }}g"
-    times: "{{ logicalvolumes['logicalvolume1']['partition_index'] }}"
+    external_device: "{{ logicalvolume1['external_device'] }}"
+    partition_size: "{{ logicalvolume1['partition_size'] }}GB"
+    vg: "{{ logicalvolume1['vg_name'] }}"
+    partition_index: "{{ logicalvolume1['external_device'] }}{{ logicalvolume1['partition_index'] }}"
+    lv: "{{ logicalvolume1['lv_name'] }}"
+    lvm_size: "{{ logicalvolume1['lvm_size'] }}g"
+    times: "{{ logicalvolume1['partition_index'] }}"
 
   pre_tasks:
     - name: check the lvs is exist or not
@@ -34,13 +35,13 @@
   tasks:
     - name: set_facts for the logical volumes
       set_fact:
-        external_device: "{{ logicalvolumes['logicalvolume2']['external_device'] }}"
-        partition_size: "{{ logicalvolumes['logicalvolume2']['partition_size'] }}GB"
-        vg: "{{ logicalvolumes['logicalvolume2']['vg_name'] }}"
-        partition_index: "{{ logicalvolumes['logicalvolume2']['external_device'] }}{{ logicalvolumes['logicalvolume2']['partition_index'] }}"
-        lv: "{{ logicalvolumes['logicalvolume2']['lv_name'] }}"
-        lvm_size: "{{ logicalvolumes['logicalvolume2']['lvm_size'] }}g"
-        times: "{{ logicalvolumes['logicalvolume2']['partition_index'] }}"
+        external_device: "{{ logicalvolume2['external_device'] }}"
+        partition_size: "{{ logicalvolume2['partition_size'] }}GB"
+        vg: "{{ logicalvolume2['vg_name'] }}"
+        partition_index: "{{ logicalvolume2['external_device'] }}{{ logicalvolume2['partition_index'] }}"
+        lv: "{{ logicalvolume2['lv_name'] }}"
+        lvm_size: "{{ logicalvolume2['lvm_size'] }}g"
+        times: "{{ logicalvolume2['partition_index'] }}"
 
     - debug: msg="{{ external_device}} {{partition_size}}  {{vg}} {{partition_index}} {{lvm_size}} {{times }}"
     - name: check if the lvs is create or not for storage
@@ -64,6 +65,14 @@
 - hosts: admin
   become: true
   become_user: root
+  vars:
+    external_device: "{{ logicalvolume2['external_device'] }}"
+    partition_size: "{{ logicalvolume2['partition_size'] }}GB"
+    vg: "{{ logicalvolume2['vg_name'] }}"
+    partition_index: "{{ logicalvolume2['external_device'] }}{{ logicalvolume2['partition_index'] }}"
+    lv: "{{ logicalvolume2['lv_name'] }}"
+    lvm_size: "{{ logicalvolume2['lvm_size'] }}g"
+
   tasks:
     - name: importing the setup_ceph.yml
       import_role:

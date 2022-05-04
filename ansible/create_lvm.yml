@@ -1,4 +1,12 @@
 
+- name: create partition
+  parted:
+    device: "{{ external_device }}"
+    number: "{{ times }}"
+    flags: [ lvm ]
+    state: present
+    part_start: "{{ partition_size }}"
+
 - name: task for creating volume group
   lvg:
     vg: "{{ vg }}"
