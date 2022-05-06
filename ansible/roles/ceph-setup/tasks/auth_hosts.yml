@@ -1,0 +1,13 @@
+- block:
+    - name: Set authorized key in monitor node
+      shell: sudo ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-mon
+
+    - name: Set authorized key in osd1 node
+      shell: sudo ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-osd1
+
+    - name: Set authorized key in ods2 node
+      shell: sudo ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-osd2
+
+    - name: Set authorized key in monitor node
+      shell: sudo ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-mds
+  ignore_erros: true

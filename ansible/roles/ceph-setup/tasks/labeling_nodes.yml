@@ -1,0 +1,13 @@
+- block:
+    - name: label the mon deamon
+      shell: sudo ceph orch host label add ceph-mon mon/osd
+
+    - name: lable the mds deamon
+      shell: sudo ceph orch host label add ceph-mds mds
+
+    - name: label the osd1 host
+      command: sudo ceph orch host label add ceph-osd1 osd
+
+    - name: label the osd2 host
+      command: sudo ceph orch host label add ceph-osd2 osd
+  ignore_erros: true

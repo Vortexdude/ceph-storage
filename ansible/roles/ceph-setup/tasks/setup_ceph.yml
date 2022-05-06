@@ -19,49 +19,5 @@
   debug:
     var: result_out.stderr_lines
 
-- name: installing the cephadm cli mode
-  shell: sudo cephadm add-repo --release pacific
-
-- name: installing the ceph-common
-  shell: sudo cephadm install ceph-common
-
-- name: start docker container service
-  service:
-    name: docker
-    state: restarted
-    
-- name: Set authorized key in monitor node
-  shell: sudo ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-mon
-
-- name: Set authorized key in osd1 node
-  shell: sudo ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-osd1
-
-- name: Set authorized key in ods2 node
-  shell: sudo ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-osd2
-
-- name: Set authorized key in monitor node
-  shell: sudo ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-mds
-
-- name: addding the monitor host in the cluster
-  shell: sudo ceph orch host add ceph-mon
-
-- name: label the mon deamon
-  shell: sudo ceph orch host label add ceph-mon mon/osd
-
-- name: addding the osd1 host in the cluster
-  shell: sudo ceph orch host add ceph-osd1
-
-- name: addding the osd2 host in the cluster
-  shell: sudo ceph orch host add ceph-osd2
-
-- name: addding the mds host in the cluster
-  shell: sudo ceph orch host add ceph-mds
-
-- name: lable the mds deamon
-  shell: sudo ceph orch host label add ceph-mds mds
-
-- name: label the osd1 host
-  command: sudo ceph orch host label add ceph-osd1 osd
-
-- name: label the osd2 host
-  command: sudo ceph orch host label add ceph-osd2 osd
+- name: including the adding host task
+  include_tasks: adding_hosts.yml
