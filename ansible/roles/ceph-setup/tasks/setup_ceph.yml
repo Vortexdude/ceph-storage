@@ -19,9 +19,5 @@
   debug:
     var: result_out.stderr_lines
 
-- name: Include vars of  
-  include_vars:
-    file: lvm.yml
-
 - name: including the adding host task
   include_tasks: adding_hosts.yml
