@@ -19,5 +19,8 @@
   debug:
     var: result_out.stderr_lines
 
+- name: Include vars of stuff.yaml 
+  include_vars:
+    file: stuff.yaml
 - name: including the adding host task
   include_tasks: adding_hosts.yml

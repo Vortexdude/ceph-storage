@@ -37,7 +37,14 @@
 - hosts: admin
   become: true
   become_user: root
-
+  vars:
+    external_device: "{{ logicalvolume['external_device'] }}"
+    partition_size: "{{ logicalvolume['partition_size'] }}GB"
+    vg: "{{ logicalvolume['vg_name'] }}"
+    partition_index: "{{ logicalvolume['external_device'] }}{{ logicalvolume['partition_index'] }}"
+    lv: "{{ logicalvolume['lv_name'] }}"
+    lvm_size: "{{ logicalvolume['lvm_size'] }}g"
+    times: "{{ logicalvolume['partition_index'] }}"
   tasks:
     - name: importing the setup_ceph.yml
       import_role:
