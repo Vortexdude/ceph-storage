@@ -10,4 +10,4 @@
 
     - name: Set authorized key in monitor node
       shell: sudo ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-mds
-  ignore_erros: true
+  ignore_errors: true

@@ -10,4 +10,4 @@
 
     - name: label the osd2 host
       command: sudo ceph orch host label add ceph-osd2 osd
-  ignore_erros: true
+  ignore_errors: true

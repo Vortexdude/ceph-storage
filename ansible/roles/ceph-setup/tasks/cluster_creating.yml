@@ -10,4 +10,4 @@
 
     - name: addding the mds host in the cluster
       shell: sudo ceph orch host add ceph-mds
-  ignore_erros: true
+  ignore_errors: true
