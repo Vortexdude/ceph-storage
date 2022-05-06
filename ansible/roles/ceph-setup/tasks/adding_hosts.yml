@@ -12,12 +12,9 @@
 
 - name: including the auth host task
   include_tasks: auth_hosts.yml
-  async: 20
 
 - name: including the cluster_creation task
   include_tasks: cluster_creating.yml
-  async: 20
 
 - name: including the labeling_nodes task
   include_tasks: labeling_nodes.yml
-  async: 20
