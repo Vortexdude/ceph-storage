@@ -42,6 +42,7 @@
     - name: importing the setup_ceph.yml
       import_role:
         name: ceph-setup
+        tasks_from: setup_ceph.yml
 
     - name: importing the nodes configuration  
       import_role: 
